@@ -1,1 +1,155 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bellybutton Biodiversity</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body> 
+
+    <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Belly Button Biodiversity Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well">
+          <h5>Test Subject ID No.:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)">
+          </select>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Demographic Info</h3>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="plotbar"></div>
+  <div id="plotbubble"></div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./static/js/app.js"></script>
+  <!-- <script src="./static/js/bonus.js"></script>  -->
+
+</body>
+
+</html> 
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3 Bar Chart with Dropdown</title>
+  Include D3.js -->
+  <!-- <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+Dropdown menu for sample selection -->
+<!-- <label for="selDataset">Select Sample:</label>
+<select id="selDataset"></select> -->
+
+<!-- Container for the chart -->
+<!-- <div id="barChart"></div>
+
+<script> -->
+<!-- // URL for the samples.json data
+const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
+
+// Function to fetch data and create the chart
+function createChart() {
+  d3.json(url).then(function(data) {
+    // Extract necessary data
+    const sampleValues = data.sample_values;
+    const otuIds = data.otu_ids;
+    const otuLabels = data.otu_labels;
+
+    // Create an array of objects with the top 10 OTUs
+    const top10OTUs = otuIds.slice(0, 10).map((id, index) => {
+      return {
+        sample_value: sampleValues[index],
+        otu_id: `OTU ${id}`,
+        otu_label: otuLabels[index]
+      };
+    });
+
+    // Create the dropdown menu options
+    const dropdownMenu = d3.select("#selDataset");
+    dropdownMenu.selectAll("option")
+      .data(top10OTUs)
+      .enter()
+      .append("option")
+      .attr("value", (d, i) => i) // Use the index as the value
+      .text(d => d.otu_id);
+
+    // Set up initial chart with the first sample
+    updateChart(0, top10OTUs);
+  });
+}
+
+// Function to update the chart based on the selected sample
+function updateChart(selectedIndex, data) {
+  const selectedSample = data[selectedIndex];
+
+  // Create the bar chart data
+  const trace = {
+    x: selectedSample.sample_value,
+    y: [selectedSample.otu_id],
+    text: [selectedSample.otu_label],
+    type: 'bar',
+    orientation: 'h'
+  };
+
+  // Bar chart layout
+  const layout = {
+    title: `Top 10 OTUs for ${selectedSample.otu_id}`,
+    xaxis: { title: 'Sample Values' },
+    yaxis: { title: 'OTU ID' }
+  };
+
+  // Create or update the bar chart
+  Plotly.newPlot("barChart", [trace], layout);
+}
+
+// Fetch data and create the chart on page load
+createChart();
+
+// Call updateChart() when a change takes place to the DOM
+d3.selectAll("#selDataset").on("change", function() {
+  const selectedIndex = this.value;
+  updateChart(selectedIndex, top10OTUs);
+});
+
+</script>
+
+</body>
+</html> -->
+ 
